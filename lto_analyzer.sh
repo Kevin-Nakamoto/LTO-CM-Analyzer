@@ -5,7 +5,13 @@ show_field () {
   cut_to=$(($3*2-1+$cut_from))
   msg=$4
   data=`echo $1 | cut -c $cut_from-$cut_to`
-  echo "  "$msg": "$data
+
+  if [ "$5" = "true" ]
+  then
+    echo "  "$msg": "`echo $data | xxd -p -r`
+  else 
+    echo "  "$msg": "$data
+  fi
 }    
 
 calc_page_data () {
@@ -36,10 +42,10 @@ show_cart_mfg_info () {
   cart_mfg_info=`calc_page_data $1 64 $2`
   show_field $cart_mfg_info 0 2 "Page Id"
   show_field $cart_mfg_info 2 2 "Page Length"
-  show_field $cart_mfg_info 4 8 "Cartridge Manufacturer"
-  show_field $cart_mfg_info 12 10 "Serial Number"
+  show_field $cart_mfg_info 4 8 "Cartridge Manufacturer" "true"
+  show_field $cart_mfg_info 12 10 "Serial Number" "true"
   show_field $cart_mfg_info 22 2 "Cartridge Type"
-  show_field $cart_mfg_info 24 8 "Date of Manufacture"
+  show_field $cart_mfg_info 24 8 "Date of Manufacture" "true"
   show_field $cart_mfg_info 32 2 "Tape Length"
   show_field $cart_mfg_info 34 2 "Tape Thickness"
   show_field $cart_mfg_info 36 2 "Empty Reel Inertia"
@@ -56,7 +62,7 @@ show_media_mfg_info () {
   media_mfg_info=`calc_page_data $1 64 $2`
   show_field $media_mfg_info 0 2 "Page Id"
   show_field $media_mfg_info 2 2 "Page Length"
-  show_field $media_mfg_info 4 48 "Servowriter Manufacturer"
+  show_field $media_mfg_info 4 48 "Servowriter Manufacturer" "true"
   show_field $media_mfg_info 52 8 "Reserved"
   show_field $media_mfg_info 60 4 "CRC"
 }
@@ -66,8 +72,8 @@ show_init_data () {
   init_data=`calc_page_data $1 64 $2`
   show_field $init_data 0 2 "Page Id"
   show_field $init_data 2 2 "Page Length"
-  show_field $init_data 4 8 "Initialising Drive Manufacturer"
-  show_field $init_data 12 10 "Drive Id"
+  show_field $init_data 4 8 "Initialising Drive Manufacturer" "true"
+  show_field $init_data 12 10 "Drive Id" "true"
   show_field $init_data 22 2 "Format Type"
   show_field $init_data 24 4 "LP1 Position"
   show_field $init_data 28 4 "LP2 Position"
@@ -169,8 +175,8 @@ show_usage_info () {
   usage_info=`calc_page_data $1 64 $2`
   show_field $usage_info 0 2 "Page Id"
   show_field $usage_info 2 2 "Page Length"
-  show_field $usage_info 4 8 "Drive Manufacturer"
-  show_field $usage_info 12 10 "Drive Id"
+  show_field $usage_info 4 8 "Drive Manufacturer" "true"
+  show_field $usage_info 12 10 "Drive Id" "true"
   show_field $usage_info 22 2 "Suspended Writes at Append"
   show_field $usage_info 24 4 "Thread Count"
   show_field $usage_info 28 8 "Total Data Sets Written"
