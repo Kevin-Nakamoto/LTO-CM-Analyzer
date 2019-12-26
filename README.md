@@ -1,5 +1,5 @@
 # LTO-CM-Analyzer
-This is an open-source project for LTO([Linear Tape-Open](https://en.wikipedia.org/wiki/Linear_Tape-Open)) Cartridge Memory (CM) Analyzer
+This is an open-source project for LTO ([Linear Tape-Open](https://en.wikipedia.org/wiki/Linear_Tape-Open)) tape Cartridge Memory (CM) Analyzer
 
 ## Description
 This is a Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. In order to dump memory data from LTO-CM tag, you should use RFID reader device which supports LTO-CM tag. Currently, [Proxmark3](http://www.proxmark.org/) is able to read raw data from the tag and save it to file. You can also check [Proxmark3 Github repository](https://github.com/Proxmark/proxmark3) or [Proxmark3 developers community](http://www.proxmark.org/forum/index.php) for more information.
