@@ -140,7 +140,7 @@ show_mechanism_related () {
   echo "-- Mechanism Related --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 8 "Drive Manufacturer Identity"
+  show_field $1 4 8 "Drive Manufacturer Identity" "true"
   show_field $1 12 368 "Mechanism related data"
   show_field $1 380 4 "CRC"
 }
@@ -203,12 +203,12 @@ fi
 #ASCII to Hex
 input=`cat "$1" | xxd -p -r`
 
-#Search for Starting Address of Each Page
-page_table=`calc_page_data 24 $((${#input}/2-36)) $input`
+#Search for Starting Address of Protected Pages
+p_page_table=`calc_page_data 24 $((${#input}/2-36)) $input`
 i=0
 while :
 do
-  page_descriptor=`echo $page_table | cut -c $((1+i*8))-$((8+i*8))`
+  page_descriptor=`echo $p_page_table | cut -c $((1+i*8))-$((8+i*8))`
   page_version=`echo $page_descriptor | cut -c 1`
   page_id=`echo $page_descriptor | cut -c 2-4`
   start_addr=`echo $page_descriptor | cut -c 5-8`
@@ -217,6 +217,30 @@ do
     "001" ) cart_mfg_info_addr=$start_addr;;
     "002" ) media_mfg_info_addr=$start_addr;;
     "101" ) init_data_addr=$start_addr;;
+  esac
+  
+  #An End Of Page Table (EOPT) Page Descriptor. Exit search loop
+  if [ "$page_id" = "FFF" -a "$page_version" = "0" ]; then
+    unprotected_page_addr=$start_addr
+    break
+  fi
+
+  i=$((i+1))
+
+done
+
+#Search for Starting Address of Unprotected Pages
+unprotected_page_addr_d=`echo "ibase=16; $unprotected_page_addr"|bc`
+u_page_table=`calc_page_data $unprotected_page_addr $((${#input}/2-unprotected_page_addr_d)) $input`
+i=0
+while :
+do
+  page_descriptor=`echo $u_page_table | cut -c $((1+i*8))-$((8+i*8))`
+  page_version=`echo $page_descriptor | cut -c 1`
+  page_id=`echo $page_descriptor | cut -c 2-4`
+  start_addr=`echo $page_descriptor | cut -c 5-8`
+
+  case "$page_id" in
     "102" ) tape_wrt_pass_addr=$start_addr;;
     "103" ) tape_dir_addr=$start_addr;;
     "104" ) eod_info_addr=$start_addr;;
@@ -229,7 +253,7 @@ do
     "10B" ) usage_info3_addr=$start_addr;;
     "200" ) app_specific_addr=$start_addr;;
   esac
-  
+
   #An End Of Page Table (EOPT) Page Descriptor. Exit search loop
   if [ "$page_id" = "FFF" -a "$page_version" = "0" ]; then
     break
@@ -288,7 +312,7 @@ fi
 
 if [ "$usage_info0_addr" != "" ]; then
   usage_info=`calc_page_data $usage_info0_addr 64 $input`
-  show_usage_info $usage_info0 0
+  show_usage_info $usage_info 0
 fi
 
 if [ "$usage_info1_addr" != "" ]; then
