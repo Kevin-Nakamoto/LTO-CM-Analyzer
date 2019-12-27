@@ -5,9 +5,12 @@ show_field () {
   fd_end_addr=$(($3*2-1+$fd_start_addr))
   data=`echo $1 | cut -c $fd_start_addr-$fd_end_addr`
 
-  if [ "$5" = "true" ]
+  if [ "$5" = "ascii" ]
   then
     echo "  "$4": "`echo $data | xxd -p -r`
+  elif [ "$5" = "decimal" ]
+  then
+    echo "  "$4": "`echo "ibase=16; $data" | bc`
   else 
     echo "  "$4": "$data
   fi
@@ -40,10 +43,10 @@ show_cart_mfg_info () {
   echo "-- Cartridge Manufacturer's Information --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 8 "Cartridge Manufacturer" "true"
-  show_field $1 12 10 "Serial Number" "true"
+  show_field $1 4 8 "Cartridge Manufacturer" "ascii"
+  show_field $1 12 10 "Serial Number" "ascii"
   show_field $1 22 2 "Cartridge Type"
-  show_field $1 24 8 "Date of Manufacture" "true"
+  show_field $1 24 8 "Date of Manufacture" "ascii"
   show_field $1 32 2 "Tape Length"
   show_field $1 34 2 "Tape Thickness"
   show_field $1 36 2 "Empty Reel Inertia"
@@ -59,7 +62,7 @@ show_media_mfg_info () {
   echo "-- Media Manufacturer's Information --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 48 "Servowriter Manufacturer" "true"
+  show_field $1 4 48 "Servowriter Manufacturer" "ascii"
   show_field $1 52 8 "Reserved"
   show_field $1 60 4 "CRC"
 }
@@ -68,8 +71,8 @@ show_init_data () {
   echo "-- Initialisation Data --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 8 "Initialising Drive Manufacturer" "true"
-  show_field $1 12 10 "Drive Id" "true"
+  show_field $1 4 8 "Initialising Drive Manufacturer" "ascii"
+  show_field $1 12 10 "Drive Id" "ascii"
   show_field $1 22 2 "Format Type"
   show_field $1 24 4 "LP1 Position"
   show_field $1 28 4 "LP2 Position"
@@ -140,7 +143,7 @@ show_mechanism_related () {
   echo "-- Mechanism Related --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 8 "Drive Manufacturer Identity" "true"
+  show_field $1 4 8 "Drive Manufacturer Identity" "ascii"
   #show_field $1 12 368 "Mechanism related data"
   show_field $1 380 4 "CRC"
 }
@@ -164,18 +167,18 @@ show_usage_info () {
   echo "-- Usage Information $2 --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 8 "Drive Manufacturer" "true"
-  show_field $1 12 10 "Drive Id" "true"
-  show_field $1 22 2 "Suspended Writes at Append"
-  show_field $1 24 4 "Thread Count"
-  show_field $1 28 8 "Total Data Sets Written"
-  show_field $1 36 8 "Total Data Sets Read"
-  show_field $1 44 4 "Total Write Retries"
-  show_field $1 48 4 "Total Read Retries"
-  show_field $1 52 2 "Total Unrecovered Write Errors"
-  show_field $1 54 2 "Total Unrecovered Read Errors"
-  show_field $1 56 2 "Total Number of Suspended Writes"
-  show_field $1 58 2 "Total Number of Fatal Suspended Writes"
+  show_field $1 4 8 "Drive Manufacturer" "ascii"
+  show_field $1 12 10 "Drive Id" "ascii"
+  show_field $1 22 2 "Suspended Writes at Append" "decimal"
+  show_field $1 24 4 "Thread Count" "decimal"
+  show_field $1 28 8 "Total Data Sets Written" "decimal"
+  show_field $1 36 8 "Total Data Sets Read" "decimal"
+  show_field $1 44 4 "Total Write Retries" "decimal"
+  show_field $1 48 4 "Total Read Retries" "decimal"
+  show_field $1 52 2 "Total Unrecovered Write Errors" "decimal"
+  show_field $1 54 2 "Total Unrecovered Read Errors" "decimal"
+  show_field $1 56 2 "Total Number of Suspended Writes" "decimal"
+  show_field $1 58 2 "Total Number of Fatal Suspended Writes" "decimal"
   show_field $1 60 4 "CRC"
 }
 
