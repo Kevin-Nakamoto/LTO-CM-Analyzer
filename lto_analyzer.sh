@@ -141,7 +141,7 @@ show_mechanism_related () {
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
   show_field $1 4 8 "Drive Manufacturer Identity" "true"
-  show_field $1 12 368 "Mechanism related data"
+  #show_field $1 12 368 "Mechanism related data"
   show_field $1 380 4 "CRC"
 }
 
@@ -183,7 +183,7 @@ show_app_specific () {
   echo "-- Application Specific Data --"
   show_field $1 0 2 "Page Id"
   show_field $1 2 2 "Page Length"
-  show_field $1 4 1024 "Application Data"
+  #show_field $1 4 1024 "Application Data"
   show_field $1 1028 24 "Reserved"
   show_field $1 1052 4 "CRC"
 }
@@ -216,7 +216,6 @@ do
   case "$page_id" in
     "001" ) cart_mfg_info_addr=$start_addr;;
     "002" ) media_mfg_info_addr=$start_addr;;
-    "101" ) init_data_addr=$start_addr;;
   esac
   
   #An End Of Page Table (EOPT) Page Descriptor. Exit search loop
@@ -241,6 +240,7 @@ do
   start_addr=`echo $page_descriptor | cut -c 5-8`
 
   case "$page_id" in
+    "101" ) init_data_addr=$start_addr;;
     "102" ) tape_wrt_pass_addr=$start_addr;;
     "103" ) tape_dir_addr=$start_addr;;
     "104" ) eod_info_addr=$start_addr;;
