@@ -79,7 +79,7 @@ No need to install. Just run the script. You may want to change file permission 
 Since this script is based on [LTO-1 specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf), the script may return wrong cartridge information especially for modern LTO generations such as LTO-4, LTO-5 etc..
 
 ## License
-MIT
+[MIT](https://github.com/Kevin-Nakamoto/LTO-CM-Analyzer/blob/master/LICENSE)
 
 ## Author
 [Kevin Nakamoto](https://github.com/Kevin-Nakamoto)
@@ -87,3 +87,4 @@ MIT
 ## Reference
 - [Cartridge memory](https://en.wikipedia.org/wiki/Linear_Tape-Open#Cartridge_memory) Wikipedia
 - [LTO-1 Specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf) published from [ECMA](https://www.ecma-international.org/)
+- [How to dump LTO CM manually](http://www.proxmark.org/forum/viewtopic.php?id=2686) Proxmark3 developers community
