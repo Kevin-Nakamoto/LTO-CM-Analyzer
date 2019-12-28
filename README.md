@@ -5,7 +5,7 @@ This is an open-source project for LTO ([Linear Tape-Open](https://en.wikipedia.
 This is a Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. In order to dump memory data from LTO-CM tag, you should use RFID reader device which supports LTO-CM tag. Currently, [Proxmark3](http://www.proxmark.org/) is able to read raw data from the tag and save it to file. You can also check [Proxmark3 Github repository](https://github.com/Proxmark/proxmark3) or [Proxmark3 developers community](http://www.proxmark.org/forum/index.php) for more information.
 
 ## Motivation
-There are several LTO CM reader/analyzer in the market. These are proprietary solutions. By combining with OSS-based RFID equipment which is able to dump data from LTO CM tag, this script allows us to convert dump data to human-readable format.
+There are several LTO CM reader/analyzer in the market. These are proprietary solutions and they are only supported on Windows. By combining with OSS-based RFID equipment which is able to dump data from LTO CM tag, this script allows us to convert dump data to human-readable format.
 
 ## Demo
 ~~~
