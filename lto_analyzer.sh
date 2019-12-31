@@ -219,6 +219,7 @@ do
   case "$page_id" in
     "001" ) cart_mfg_info_addr=$start_addr;;
     "002" ) media_mfg_info_addr=$start_addr;;
+    "101" ) init_data_addr=$start_addr;;
   esac
   
   #An End Of Page Table (EOPT) Page Descriptor. Exit search loop
