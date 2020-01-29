@@ -77,7 +77,7 @@ $ hf lto dump
 
 Run this script along with file path to the dump data.
 ~~~
-$ lto_analyzer.sh [*.eml or *bin] 
+$ lto_analyzer.sh [*.eml or *.bin] 
 ~~~
 
 ## Install
