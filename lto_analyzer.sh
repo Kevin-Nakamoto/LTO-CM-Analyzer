@@ -194,7 +194,7 @@ show_app_specific () {
 #-- Main
 
 if [ "$1" = "" ]; then
-  echo "Usage: $(basename "$0") [*.eml]"
+  echo "Usage: $(basename "$0") [*.eml or *.bin]"
   exit 2
 fi
 
@@ -203,8 +203,18 @@ if [ ! -e "$1" ]; then
   exit 2
 fi
 
-#ASCII to Hex
-input=`cat "$1" | xxd -p -r`
+#Read File
+
+if [ "`echo $1 | grep .eml`" ]
+then
+  input=`cat "$1" | tr -d '\n'`
+elif [ "`echo $1 | grep .bin`" ]
+then
+  input=`xxd -u -ps "$1" |  tr -d '\n'`
+else
+  echo "Unsupported File"
+  exit 2
+fi
 
 #Search for Starting Address of Protected Pages
 p_page_table=`calc_page_data 24 $((${#input}/2-36)) $input`
