@@ -286,8 +286,10 @@ show_lto_cm_wrtinh $lto_cm_wrtinh
 cart_mfg_info=`calc_page_data $cart_mfg_info_addr 64 $input`
 show_cart_mfg_info $cart_mfg_info
 
-media_mfg_info=`calc_page_data $media_mfg_info_addr 64 $input`
-show_media_mfg_info $media_mfg_info
+if [ "$media_mfg_info_addr" != "" ]; then
+  media_mfg_info=`calc_page_data $media_mfg_info_addr 64 $input`
+  show_media_mfg_info $media_mfg_info
+fi
 
 if [ "$init_data_addr" != "" ]; then
   init_data=`calc_page_data $init_data_addr 64 $input`
