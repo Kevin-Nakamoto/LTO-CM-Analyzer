@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# ------------------------------------------------
+#                   Tools
+# ------------------------------------------------
+
 show_field () {
   fd_start_addr=$(($2*2+1))
   fd_end_addr=$(($3*2-1+$fd_start_addr))
@@ -22,6 +26,10 @@ calc_page_data () {
   pg_end_addr=$(($2*2-1+$pg_start_addr))
   echo $3 | cut -c $pg_start_addr-$pg_end_addr
 }
+
+# ------------------------------------------------
+#               Sub - Show Page
+# ------------------------------------------------
 
 show_lto_cm_mfg_info () {
   echo "-- LTO CM Manufacturer's Information --"
@@ -191,7 +199,9 @@ show_app_specific () {
   show_field $1 1052 4 "CRC"
 }
 
-#-- Main
+# ------------------------------------------------
+#                    Main
+# ------------------------------------------------
 
 if [ "$1" = "" ]; then
   echo "Usage: $(basename "$0") [*.eml or *.bin]"
