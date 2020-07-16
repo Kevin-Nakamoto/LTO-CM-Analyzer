@@ -8,6 +8,9 @@ This is a Linux bash script which aims to convert LTO-CM dump data to human-read
 There are several LTO CM reader/analyzer in the market. These are proprietary solutions and they are only supported on Windows. By combining with OSS-based RFID equipment which is able to dump data from LTO CM tag, this script allows us to convert dump data to human-readable format.
 
 ## Demo
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/KaA23S3oPio/0.jpg)](https://www.youtube.com/watch?v=KaA23S3oPio)
+
 ~~~
 $ ./lto_analyzer.sh  lto-cm_dump.eml
 -- LTO CM Manufacturer's Information --
