@@ -2,7 +2,10 @@
 LTO ([Linear Tape-Open](https://en.wikipedia.org/wiki/Linear_Tape-Open)) tape Cartridge Memory (CM) Analyzer
 
 ## Description
-Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. To dump memory data from LTO-CM tag (also called MAM (Media Auxiliary Memory)), you should use RFID reader device which supports LTO-CM tag. Currently, [Proxmark3](http://www.proxmark.org/) is able to dump data from the tag and save it to file. You can also check [Proxmark3 Github repository](https://github.com/RfidResearchGroup/proxmark3) or [Proxmark3 developers community](http://www.proxmark.org/forum/index.php) for more information.
+Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. To dump memory data from LTO-CM tag (also called MAM (Media Auxiliary Memory)), you should use RFID reader device which supports LTO-CM tag. Currently, RFID readers such as [ACR122U](https://www.acs.com.hk/en/products/3/acr122u-usb-nfc-reader/), [SCL3711](https://www.identiv.com/products/logical-access-control/smart-card-readers/mobile/scl3711/) and [Proxmark3](http://www.proxmark.org/) are able to dump data from the tag and save it to file. You can also check the following repos and websites for more details:
+
+- [nfc-ltocm](https://github.com/philpem/nfc-ltocm/) by [Phil Pemberton](https://github.com/philpem)
+- [Proxmark3 Github repository](https://github.com/RfidResearchGroup/proxmark3) by [RfidResearchGroup](https://github.com/RfidResearchGroup)
 
 ## Motivation
 There are several LTO CM reader/analyzer in the market, however, these are proprietary solutions and they are only supported on Windows. 
@@ -48,7 +51,7 @@ $ ./lto_analyzer.sh  lto-cm_dump.eml
 ~~~
 
 ## Requirement
-- [Proxmark3](http://www.proxmark.org/) to dump data from LTO-CM tag.
+- RFID reader (e.g., proxmark3, ACR122u and SCL3711) to dump data from LTO-CM tag.
 - Linux or [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run this script.
 - bc (Basic Calculator) command line utility.
 ~~~
@@ -99,3 +102,4 @@ Since this script is based on [LTO-1 specification](https://www.ecma-internation
 - [Cartridge memory](https://en.wikipedia.org/wiki/Linear_Tape-Open#Cartridge_memory) Wikipedia
 - [LTO-1 Specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf) published from [ECMA](https://www.ecma-international.org/)
 - [How to dump LTO CM manually](http://www.proxmark.org/forum/viewtopic.php?id=2686) Proxmark3 developers community
+- [libnfc](https://github.com/nfc-tools/libnfc)
