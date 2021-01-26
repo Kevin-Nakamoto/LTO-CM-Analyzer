@@ -2,10 +2,11 @@
 LTO ([Linear Tape-Open](https://en.wikipedia.org/wiki/Linear_Tape-Open)) tape Cartridge Memory (CM) Analyzer
 
 ## Description
-Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. To dump memory data from LTO-CM tag (also called MAM (Media Auxiliary Memory)), you should use RFID reader device which supports LTO-CM tag. Currently, RFID readers such as [ACR122U](https://www.acs.com.hk/en/products/3/acr122u-usb-nfc-reader/), [SCL3711](https://www.identiv.com/products/logical-access-control/smart-card-readers/mobile/scl3711/) and [Proxmark3](http://www.proxmark.org/) are able to dump data from the tag and save it to file. You can also check the following repos and websites for more details:
+Linux bash script which aims to convert LTO-CM dump data to human-readable cartridge information. To dump memory data from LTO-CM tag (also called MAM (Media Auxiliary Memory)), you should use RFID reader device which supports LTO-CM tag, or LTO tape drive. Currently, RFID readers such as [ACR122U](https://www.acs.com.hk/en/products/3/acr122u-usb-nfc-reader/), [SCL3711](https://www.identiv.com/products/logical-access-control/smart-card-readers/mobile/scl3711/) and [Proxmark3](http://www.proxmark.org/) are able to dump data from the tag and save it to file. You can also check the following repos and websites for more details:
 
-- [nfc-ltocm](https://github.com/philpem/nfc-ltocm/) by [Phil Pemberton](https://github.com/philpem)
-- [Proxmark3 Github repository](https://github.com/RfidResearchGroup/proxmark3) by [RfidResearchGroup](https://github.com/RfidResearchGroup)
+- RFID Reader: [nfc-ltocm](https://github.com/philpem/nfc-ltocm/) by [Phil Pemberton](https://github.com/philpem)
+- RFID Reader: [Proxmark3 Github repository](https://github.com/RfidResearchGroup/proxmark3) by [RfidResearchGroup](https://github.com/RfidResearchGroup)
+- Tape Drive: [SCSI READ BUFFER](https://render-prd-trops.events.ibm.com/sites/default/files/support/ssg/ssgdocs.nsf/0/4d430d4b4e1f09b18525787300607b1d/%24FILE/LTO%20SCSI%20Reference%20%28EXTERNAL%20-%2020171024%29.pdf)
 
 ## Motivation
 There are several LTO CM reader/analyzer in the market, however, these are proprietary solutions and they are only supported on Windows. 
@@ -51,7 +52,7 @@ $ ./lto_analyzer.sh  lto-cm_dump.eml
 ~~~
 
 ## Requirement
-- RFID reader (e.g., proxmark3, ACR122u and SCL3711) to dump data from LTO-CM tag.
+- RFID reader (e.g., proxmark3, ACR122u and SCL3711) or LTO Drive to dump data from LTO-CM tag.
 - Linux or [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) to run this script.
 - bc (Basic Calculator) command line utility.
 ~~~
@@ -76,11 +77,6 @@ $ sudo dnf install bc	#Fedora
 - Application Specific
 
 ## Usage
-First, you need to dump data from the cartridge memory and save it to file with Proxmark.
-~~~
-$ hf lto dump
-~~~
-
 Run this script along with file path to the dump data.
 ~~~
 $ lto_analyzer.sh [*.eml or *.bin] 
