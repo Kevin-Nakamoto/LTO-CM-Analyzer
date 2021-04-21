@@ -98,4 +98,5 @@ Since this script is based on [LTO-1 specification](https://www.ecma-internation
 - [Cartridge memory](https://en.wikipedia.org/wiki/Linear_Tape-Open#Cartridge_memory) Wikipedia
 - [LTO-1 Specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf) published from [ECMA](https://www.ecma-international.org/)
 - [How to dump LTO CM manually](http://www.proxmark.org/forum/viewtopic.php?id=2686) Proxmark3 developers community
+- [Reading LTO-CM tape RFID](https://forum.dangerousthings.com/t/reading-lto-cm-tape-rfid) Dangerous Things Forum
 - [libnfc](https://github.com/nfc-tools/libnfc)
