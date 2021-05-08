@@ -85,7 +85,7 @@ $ lto_analyzer.sh [*.eml or *.bin]
 Just run the script. You may want to change file permission by chmod.
 
 ## Limitations
-Since this script is based on [LTO-1 specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf), it may show wrong cartridge information especially for modern generations such as LTO-4, LTO-5 etc.. Indeed, some parameters are not decoded correctly. See this [issue](https://github.com/Kevin-Nakamoto/LTO-CM-Analyzer/issues/2).
+Since this script is based on [LTO-1 specification](https://www.ecma-international.org/publications/files/ECMA-ST/ECMA-319.pdf), it may show wrong cartridge information for modern generations. Indeed, some parameters are not decoded correctly. See this [issue](https://github.com/Kevin-Nakamoto/LTO-CM-Analyzer/issues/2).
 
 ## License
 [MIT](https://github.com/Kevin-Nakamoto/LTO-CM-Analyzer/blob/master/LICENSE)
