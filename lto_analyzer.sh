@@ -11,7 +11,7 @@ show_field () {
 
   if [ "$5" = "ascii" ]
   then
-    echo "  "$4": "`echo $data | xxd -p -r`
+    echo "  "$4": "`echo $data | xxd -p -r | tr -d '\0'`
   elif [ "$5" = "decimal" ]
   then
     echo "  "$4": "`echo "ibase=16; $data" | bc`
